@@ -1,13 +1,13 @@
 try {
-  let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  let recognition = new SpeechRecognition();
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = new SpeechRecognition();
 }
 catch(e) {
   console.error(e);
 }
 
 recognition.continuous = true;
-recognition.interimResults = true;
+//recognition.interimResults = true;
 
 recognition.onresult = function(e) {
     console.log('onresult', e);
@@ -27,10 +27,6 @@ recognition.onend = function(e) {
     console.log('onend', e);
 };
 
-recognition.onresult = function(e) {
-    console.log('onresult', e);
-};
-
 recognition.onspeechend = function(e) {
     console.log('onspeechend', e);
 };
@@ -39,9 +35,9 @@ recognition.onerror = function(e) {
     console.log('onerror', e);
 };
 
-window.onload = function init() {
+$(function() {
 	recognition.start();
-};
+});
 
 function appendBotDiv(data) {
 	var div = document.createElement("div");
